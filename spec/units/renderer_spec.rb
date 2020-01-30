@@ -17,8 +17,8 @@ RSpec.describe Renderer do
 
   describe '.draw_board' do
     it 'prints out an empty board' do
-      board = double :board,
-        cells: Array.new(10) { Array.new(10, false) }
+      board = double(:board,
+                     cells: Array.new(10) { Array.new(10, false) })
 
       expected_output =  " |A|B|C|D|E|F|G|H|I|J|\n"
       expected_output << "0|_|_|_|_|_|_|_|_|_|_|\n"
