@@ -5,9 +5,9 @@ class Board
     @cells = Array.new(10) { Array.new(10, false) }
   end
 
-  def insert_ship(column, row)
+  def insert_ship(column, row, size = 3)
     column = @@columns[column]
-    for i in 0..2 do
+    for i in 0...size do
       @cells[row][column + i] = true
     end
     true

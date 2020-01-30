@@ -14,7 +14,11 @@ class Game
 
     ship_position = ship_position.match(/\A([A-J]), ?([0-9])\Z/)
 
-    @board.insert_ship ship_position[1].to_sym, ship_position[2].to_i
+    @renderer.print_prompt("What size of ship would you like to place")
+
+    ship_size = @input.gets.chomp.to_i
+
+    @board.insert_ship ship_position[1].to_sym, ship_position[2].to_i, ship_size
 
     @renderer.draw_board @board
   end
