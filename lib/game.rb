@@ -1,22 +1,20 @@
 class Game
-  def initialize input = STDIN
+  def initialize input = STDIN, board = Board.new
+    @board = board
+    @input = input
   end
 
   def run
-    board =  " |A|B|C|D|E|F|G|H|I|J|\n"
-    board << "0|_|_|_|_|_|_|_|_|_|_|\n"
-    board << "1|_|_|_|_|_|_|_|_|_|_|\n"
-    board << "2|_|_|_|_|_|_|_|_|_|_|\n"
-    board << "3|_|_|_|_|_|_|_|_|_|_|\n"
-    board << "4|_|_|_|_|_|_|_|_|_|_|\n"
-    board << "5|_|_|_|_|_|_|_|_|_|_|\n"
-    board << "6|_|_|_|_|_|_|_|_|_|_|\n"
-    board << "7|_|_|_|_|_|_|_|_|_|_|\n"
-    board << "8|_|_|_|_|_|_|_|_|_|_|\n"
-    board << "9|_|_|_|_|_|_|_|_|_|_|"
-
-    puts board
+    puts @board.to_s
 
     print "Please choose where to place a ship: "
+
+    ship_position = @input.gets.chomp
+
+    ship_position = ship_position.match(/\A([A-J]), ?([0-9])\Z/)
+
+    @board.insert_ship ship_position[1].to_sym, ship_position[2].to_i
+
+    puts @board.to_s
   end
 end
