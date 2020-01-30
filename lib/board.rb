@@ -1,16 +1,8 @@
 class Board
+  attr_reader :cells
+
   def initialize
     @cells = Array.new(10) { Array.new(10, false) }
-  end
-
-  def to_s
-    string = " |A|B|C|D|E|F|G|H|I|J|\n"
-    @cells.each_with_index do |row, index|
-      string << "#{index}|"
-      row.each { |cell| string << "#{cell ? '@' : '_'}|" }
-      string << "\n"
-    end
-    string
   end
 
   def insert_ship(column, row)

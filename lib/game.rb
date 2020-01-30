@@ -1,13 +1,14 @@
 class Game
-  def initialize input = STDIN, board = Board.new
+  def initialize renderer = Renderer, input = STDIN, board = Board.new
     @board = board
     @input = input
+    @renderer = renderer
   end
 
   def run
-    puts @board.to_s
+    @renderer.draw_board @board
 
-    print "Please choose where to place a ship: "
+    @renderer.print_prompt("Please choose where to place a ship")
 
     ship_position = @input.gets.chomp
 
@@ -15,6 +16,6 @@ class Game
 
     @board.insert_ship ship_position[1].to_sym, ship_position[2].to_i
 
-    puts @board.to_s
+    @renderer.draw_board @board
   end
 end

@@ -1,39 +1,21 @@
 require 'board'
 
 RSpec.describe Board do
-  describe '#to_s' do
-    it "prints out a blank board" do
-      expected_output =  " |A|B|C|D|E|F|G|H|I|J|\n"
-      expected_output << "0|_|_|_|_|_|_|_|_|_|_|\n"
-      expected_output << "1|_|_|_|_|_|_|_|_|_|_|\n"
-      expected_output << "2|_|_|_|_|_|_|_|_|_|_|\n"
-      expected_output << "3|_|_|_|_|_|_|_|_|_|_|\n"
-      expected_output << "4|_|_|_|_|_|_|_|_|_|_|\n"
-      expected_output << "5|_|_|_|_|_|_|_|_|_|_|\n"
-      expected_output << "6|_|_|_|_|_|_|_|_|_|_|\n"
-      expected_output << "7|_|_|_|_|_|_|_|_|_|_|\n"
-      expected_output << "8|_|_|_|_|_|_|_|_|_|_|\n"
-      expected_output << "9|_|_|_|_|_|_|_|_|_|_|\n"
+  let(:cells) { Array.new(10) { Array.new(10, false) } }
 
-      expect(subject.to_s).to eq expected_output
+  describe '#cells' do
+    it "prints out a blank board" do
+      expect(subject.cells).to eq cells
     end
 
     it "prints out a board with a ship in it" do
       subject.insert_ship(:C, 6)
 
-      expected_output =  " |A|B|C|D|E|F|G|H|I|J|\n"
-      expected_output << "0|_|_|_|_|_|_|_|_|_|_|\n"
-      expected_output << "1|_|_|_|_|_|_|_|_|_|_|\n"
-      expected_output << "2|_|_|_|_|_|_|_|_|_|_|\n"
-      expected_output << "3|_|_|_|_|_|_|_|_|_|_|\n"
-      expected_output << "4|_|_|_|_|_|_|_|_|_|_|\n"
-      expected_output << "5|_|_|_|_|_|_|_|_|_|_|\n"
-      expected_output << "6|_|_|@|@|@|_|_|_|_|_|\n"
-      expected_output << "7|_|_|_|_|_|_|_|_|_|_|\n"
-      expected_output << "8|_|_|_|_|_|_|_|_|_|_|\n"
-      expected_output << "9|_|_|_|_|_|_|_|_|_|_|\n"
+      cells[6][2] = true
+      cells[6][3] = true
+      cells[6][4] = true
 
-      expect(subject.to_s).to eq expected_output
+      expect(subject.cells).to eq cells
     end
   end
 
