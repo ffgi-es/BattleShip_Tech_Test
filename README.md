@@ -2,6 +2,38 @@
 
 A command line game of Battleships
 
+## Requirements
+
+ - Ruby
+
+## Usage
+
+### Installation
+
+clone the repo and in the root project directory run
+```
+$ bundle install
+```
+
+### Running
+
+To run the program run it on the command line with
+```
+$ ./Battleship
+```
+
+### Tests
+
+Run the tests with
+```
+$ rspec
+...
+$ rubocop
+...
+```
+You should see all tests pass with 100% test coverage
+and rubocop finds no offenses
+
 ## User stories
 
 ```
