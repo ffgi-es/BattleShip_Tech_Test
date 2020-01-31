@@ -9,7 +9,7 @@ RSpec.describe Game do
   end
 
   describe "putting a ship at C3" do
-    subject { Game.new renderer, StringIO.new("C, 3\n4\n"), board }
+    subject { Game.new renderer, StringIO.new("C, 3\n4\nH\n"), board }
 
     describe '#run' do
       it "prints out a blank board and a board with the ship" do
@@ -29,8 +29,14 @@ RSpec.describe Game do
         subject.run
       end
 
+      it "prompts a user for the orientation of the ship" do
+        expected_output = '[h]orizontal or [v]ertical'
+        expect(renderer).to receive(:print_prompt).with(expected_output)
+        subject.run
+      end
+
       it "adds a ship to the board" do
-        expect(board).to receive(:insert_ship).with(:C, 3, 4)
+        expect(board).to receive(:insert_ship).with(:C, 3, 4, :H)
         subject.run
       end
     end
