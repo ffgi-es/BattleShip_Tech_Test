@@ -10,7 +10,7 @@ class Game
 
     ship = prompt_ship
 
-    @board.insert_ship(ship[:column], ship[:row], ship[:size], ship[:orientation])
+    @board.insert_ship(ship)
 
     render_board
   end
@@ -47,6 +47,8 @@ class Game
 
   def prompt_ship_orientation
     @renderer.print_prompt('[h]orizontal or [v]ertical')
-    @input.gets.chomp.to_sym
+    user_orientation_input = @input.gets.chomp.to_sym
+    return :horizontal if user_orientation_input == :H
+    return :vertical if user_orientation_input == :V
   end
 end

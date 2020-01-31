@@ -17,6 +17,8 @@
 require 'simplecov'
 require 'simplecov-console'
 
+require 'header'
+
 SimpleCov.formatter = SimpleCov::Formatter::Console
 SimpleCov.start
 

@@ -5,12 +5,12 @@ class Board
     @cells = Array.new(10) { Array.new(10, false) }
   end
 
-  def insert_ship(column, row, size = 3, orientation = :H)
+  def insert_ship(column:, row:, size:, orientation:)
     column = @@columns[column]
     for i in 0...size do
       set_cell_to_ship(row, column, i, orientation)
     end
-    true
+    @cells
   end
   
   @@columns = { A: 0, B: 1, C: 2, D: 3, E: 4,
@@ -19,9 +19,10 @@ class Board
   private
 
   def set_cell_to_ship(row, column, offset, orientation)
-    if orientation == :H
+    case orientation
+    when :horizontal
       @cells[row][column + offset] = true
-    else
+    when :vertical
       @cells[row + offset][column] = true
     end
   end

@@ -7,53 +7,39 @@ RSpec.describe Board do
     it "returns an grid of false" do
       expect(subject.cells).to eq cells
     end
-
-    it "returns a grid of false with 3 true cells horizontally" do
-      subject.insert_ship(:C, 6)
-
-      cells[6][2] = true
-      cells[6][3] = true
-      cells[6][4] = true
-
-      expect(subject.cells).to eq cells
-    end
-
-    it "returns a grid with other sized ships" do
-      subject.insert_ship(:E, 8, 4)
-
-      cells[8][4] = true
-      cells[8][5] = true
-      cells[8][6] = true
-      cells[8][7] = true
-
-      expect(subject.cells).to eq cells
-    end
-
-    it "returns a grid with vertical ships" do
-      subject.insert_ship(:H, 0, 3, :V)
-
-      cells[0][7] = true
-      cells[1][7] = true
-      cells[2][7] = true
-
-      expect(subject.cells).to eq cells
-    end
   end
 
   describe '#insert_ship' do
-    it 'should return true for a valid placement' do
-      expect(subject.insert_ship(:C, 4)).to be true
-    end
+    describe 'inserting a valid ship' do
+      it 'inserts a horizonatal 3 ship at C3' do
+        cells[3][2] = true
+        cells[3][3] = true
+        cells[3][4] = true
 
-    it 'should allow for different sized ships' do
-      expect(subject.insert_ship(:C, 0, 2)).to be true
-      expect(subject.insert_ship(:C, 0, 3)).to be true
-      expect(subject.insert_ship(:C, 0, 4)).to be true
-      expect(subject.insert_ship(:C, 0, 5)).to be true
-    end
+        ship = { column: :C, row: 3, size: 3, orientation: :horizontal }
 
-    it 'should allow for vertical ships' do
-      expect(subject.insert_ship(:C, 3, 3, :V)).to be true
+        expect(subject.insert_ship ship).to eq cells
+      end
+
+      it 'inserts a horizontal 4 ship at G7' do
+        cells[7][6] = true
+        cells[7][7] = true
+        cells[7][8] = true
+        cells[7][9] = true
+
+        ship = { column: :G, row: 7, size: 4, orientation: :horizontal }
+
+        expect(subject.insert_ship ship).to eq cells
+      end
+
+      it 'inserts a vertical 2 ship at A4' do
+        cells[4][0] = true
+        cells[5][0] = true
+
+        ship = { column: :A, row: 4, size: 2, orientation: :vertical }
+
+        expect(subject.insert_ship ship).to eq cells
+      end
     end
   end
 end
